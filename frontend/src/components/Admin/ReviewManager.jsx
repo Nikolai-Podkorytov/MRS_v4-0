@@ -1,24 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../../styles/AdminTable.css'; // Custom styles for admin table
+import '../../styles/AdminTable.css';
 
-// Admin panel component to manage all reviews
+const API_URL = process.env.REACT_APP_API_URL || 'https://mrs-v4-0.onrender.com';
+
 const ReviewManager = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch all reviews from the backend
   const fetchReviews = () => {
     const token = localStorage.getItem('token');
-    axios.get('/api/reviews', {
+    axios.get(`${API_URL}/api/reviews`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
-        setReviews(response.data);
+        const data = response.data;
+        if (Array.isArray(data)) {
+          setReviews(data);
+        } else if (Array.isArray(data.reviews)) {
+          setReviews(data.reviews);
+        } else {
+          console.error('Invalid data format:', data);
+          setReviews([]);
+        }
         setLoading(false);
       })
       .catch(error => {
+        console.error('Error fetching reviews:', error);
         setError(error);
         setLoading(false);
       });
@@ -28,11 +37,10 @@ const ReviewManager = () => {
     fetchReviews();
   }, []);
 
-  // Delete a review by ID
   const handleDelete = (reviewId) => {
     const token = localStorage.getItem('token');
     if (window.confirm('Are you sure you want to delete this review?')) {
-      axios.delete(`/api/reviews/${reviewId}`, {
+      axios.delete(`${API_URL}/api/reviews/${reviewId}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
         .then(() => fetchReviews())
@@ -46,7 +54,6 @@ const ReviewManager = () => {
   return (
     <div style={{ padding: '20px' }}>
       <h2>Review Management</h2>
-
       <table className="admin-table">
         <thead>
           <tr>
@@ -58,15 +65,14 @@ const ReviewManager = () => {
             <th>Actions</th>
           </tr>
         </thead>
-
         <tbody>
-          {reviews.map(review => (
+          {Array.isArray(reviews) && reviews.map(review => (
             <tr key={review._id}>
               <td>{review._id}</td>
-              <td>{review.movieId}</td>
-              <td>{review.user}</td>
-              <td>{review.rating}</td>
-              <td>{review.text}</td>
+              <td>{review.movieId || 'N/A'}</td>
+              <td>{review.user || 'N/A'}</td>
+              <td>{review.rating ?? 'N/A'}</td>
+              <td>{review.text || review.comment || 'N/A'}</td>
               <td>
                 <button
                   onClick={() => handleDelete(review._id)}

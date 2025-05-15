@@ -1,26 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../../styles/AdminTable.css'; // Optional: custom styles for admin tables
+import '../../styles/AdminTable.css';
 
-// Admin panel component to view and manage movie list
+const API_URL = process.env.REACT_APP_API_URL || 'https://ms-v4-0.onrender.com';
+
 const MovieManager = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch all movies from the backend
   const fetchMovies = () => {
-    axios.get('https://ms-v4-0.onrender.com/api/movies')
+    axios.get(`${API_URL}/api/movies`)
       .then(response => {
         const data = response.data;
-        // Проверяем, массив ли это
         if (Array.isArray(data)) {
           setMovies(data);
         } else if (Array.isArray(data.movies)) {
           setMovies(data.movies);
         } else {
           console.error('Unexpected response format:', data);
-          setMovies([]); // fallback
+          setMovies([]);
         }
         setLoading(false);
       })
@@ -30,16 +29,14 @@ const MovieManager = () => {
       });
   };
 
-
   useEffect(() => {
     fetchMovies();
   }, []);
 
-  // Delete a movie by ID
   const handleDelete = (movieId) => {
     const token = localStorage.getItem('token');
     if (window.confirm('Are you sure you want to delete this movie?')) {
-      axios.delete(`${process.env.REACT_APP_API_URL}/api/movies/${movieId}`,  {
+      axios.delete(`${API_URL}/api/movies/${movieId}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
         .then(() => fetchMovies())
@@ -53,7 +50,6 @@ const MovieManager = () => {
   return (
     <div style={{ padding: '20px' }}>
       <h2>Movie Manager</h2>
-
       <table className="admin-table">
         <thead>
           <tr>
