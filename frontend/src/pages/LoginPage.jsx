@@ -22,7 +22,7 @@ const LoginPage = () => {
     setError('');
 
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, formData);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/login`, formData);
       const { token, role, username, userId } = response.data;
 
       localStorage.setItem('token', token);

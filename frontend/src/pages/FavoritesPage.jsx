@@ -9,7 +9,7 @@ const FavoritesPage = () => {
 
   useEffect(() => {
     if (!token) return;
-    axios.get(`${process.env.REACT_APP_API_URL}/users/favorites`, {
+    axios.get(`${process.env.REACT_APP_API_URL}/api/users/favorites`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => setFavorites(res.data))

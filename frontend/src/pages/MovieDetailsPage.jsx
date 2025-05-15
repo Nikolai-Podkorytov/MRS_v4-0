@@ -15,7 +15,7 @@ const MovieDetailsPage = () => {
   const role = localStorage.getItem('role');
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/movies`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/movies`)
       .then(res => {
         const found = res.data.find(m => m._id === id);
         setMovie(found);
@@ -24,14 +24,14 @@ const MovieDetailsPage = () => {
   }, [id]);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/reviews/average/${id}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/reviews/average/${id}`)
       .then(res => setAverageRating(res.data.average))
       .catch(err => console.error('Error loading average rating:', err));
   }, [id, refreshReviews]);
 
   useEffect(() => {
     if (!token) return;
-    axios.get(`${process.env.REACT_APP_API_URL}/users/favorites`, {
+    axios.get(`${process.env.REACT_APP_API_URL}/api/users/favorites`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => {

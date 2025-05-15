@@ -20,7 +20,7 @@ const EditMoviePage = () => {
   });
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/movies`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/movies`)
       .then(res => {
         const found = res.data.find(m => m._id === id);
         setMovie(found);
