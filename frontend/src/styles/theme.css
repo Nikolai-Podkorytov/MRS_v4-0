@@ -1,0 +1,26 @@
+/* theme.css */
+
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --header-bg: #1e1e2f;
+  --link-color: #007bff;
+  --accent-color: #ff5722;
+  --background-color: #ffffff; /* добавлено для навбара */
+}
+
+[data-theme='dark'] {
+  --bg-color: #121212;
+  --text-color: #f0f0f0;
+  --header-bg: #1e1e2f;
+  --link-color: #66b2ff;
+  --accent-color: #ff9800;
+  --background-color: #1e1e2f; /* тёмный фон для навбара */
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+}

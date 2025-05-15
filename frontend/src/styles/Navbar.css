@@ -1,0 +1,127 @@
+.navbar {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 10px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.navbar-logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--link-color);
+}
+
+.user-info {
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+.user-role {
+  font-style: italic;
+  margin-left: 5px;
+}
+
+.burger {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--text-color);
+  display: none;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  padding: 10px 0;
+  margin: 0;
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.nav-links li {
+  display: inline-block;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--link-color);
+  font-weight: 500;
+  padding: 5px 8px;
+  border-radius: 4px;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.nav-links a:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.nav-links a.active {
+  color: var(--accent-color);
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.theme-toggle,
+.logout-button {
+  background: none;
+  border: 1px solid var(--link-color);
+  color: var(--link-color);
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.theme-toggle:hover,
+.logout-button:hover {
+  background-color: var(--link-color);
+  color: white;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .burger {
+    display: block;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    width: 100%;
+  }
+
+  .nav-links.open {
+    max-height: 300px;
+    opacity: 1;
+  }
+
+  .nav-links li {
+    margin: 10px 0;
+  }
+}

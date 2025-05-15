@@ -1,0 +1,33 @@
+/* RegisterPage.css */
+
+.register-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.register-title {
+  text-align: center;
+}
+
+.register-input,
+.register-select {
+  padding: 10px;
+  font-size: 16px;
+}
+
+.register-button {
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.register-button:hover {
+  background-color: #218838;
+}

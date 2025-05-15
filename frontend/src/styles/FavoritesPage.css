@@ -1,0 +1,33 @@
+/* FavoritesPage.css */
+
+.favorites-container {
+  padding: 30px;
+}
+
+.favorites-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.favorite-card {
+  width: 160px;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.favorite-card img {
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.favorite-card a {
+  text-decoration: none;
+  color: black;
+}

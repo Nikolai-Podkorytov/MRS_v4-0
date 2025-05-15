@@ -1,0 +1,77 @@
+/* MovieDetailsPage.css */
+
+.movie-details-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  background-color: var(--bg-color);
+  color: var(--text-color);
+
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+.movie-poster {
+  flex: 1 1 300px;
+}
+
+.movie-poster img {
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.movie-info {
+  flex: 2 1 400px;
+}
+
+.movie-info h2 {
+  margin-bottom: 10px;
+}
+
+.movie-plot {
+  margin-top: 20px;
+}
+
+.movie-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.favorite-button,
+.edit-button {
+  padding: 10px 20px;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.favorite-button {
+  background-color: #007bff;
+}
+
+.favorite-button.favorited {
+  background-color: #ffc107;
+  color: black;
+}
+
+.edit-button {
+  background-color: #28a745;
+}
+
+.edit-button:hover {
+  background-color: #218838;
+}
+
+.reviews-section {
+  width: 100%;
+  margin-top: 40px;
+}

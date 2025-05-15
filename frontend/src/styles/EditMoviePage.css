@@ -1,0 +1,40 @@
+/* EditMoviePage.css */
+
+.edit-movie-container {
+  padding: 30px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.edit-movie-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.edit-movie-form label {
+  font-weight: bold;
+}
+
+.edit-movie-form input,
+.edit-movie-form textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.save-button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  background-color: #218838;
+}
