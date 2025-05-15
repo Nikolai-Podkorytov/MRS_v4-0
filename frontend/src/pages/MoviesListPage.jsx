@@ -2,23 +2,43 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-// Page to display all movies from MongoDB
 const MoviesListPage = () => {
   const [movies, setMovies] = useState([]);
+  const [searchTitle, setSearchTitle] = useState('');
 
-  // Fetch movies from backend
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}/api/movies`)
       .then(response => setMovies(response.data))
       .catch(error => console.error('Error loading movies:', error));
   }, []);
 
+  const filteredMovies = movies.filter(movie =>
+    movie.title.toLowerCase().includes(searchTitle.toLowerCase())
+  );
+
   return (
     <div style={{ padding: '30px' }}>
       <h2>🎬 Movie List</h2>
 
-      {movies.length === 0 ? (
-        <p>Loading movies...</p>
+      {/* Search input */}
+      <input
+        type="text"
+        placeholder="Search by title..."
+        value={searchTitle}
+        onChange={(e) => setSearchTitle(e.target.value)}
+        style={{
+          padding: '10px',
+          marginBottom: '20px',
+          width: '100%',
+          maxWidth: '400px',
+          borderRadius: '6px',
+          border: '1px solid #ccc',
+          fontSize: '16px'
+        }}
+      />
+
+      {filteredMovies.length === 0 ? (
+        <p>No movies found.</p>
       ) : (
         <div style={{
           display: 'flex',
@@ -26,7 +46,7 @@ const MoviesListPage = () => {
           gap: '20px',
           justifyContent: 'flex-start'
         }}>
-          {movies.map(movie => (
+          {filteredMovies.map(movie => (
             <div key={movie._id} className="movie-card light-card" style={{
               border: '1px solid #ddd',
               borderRadius: '10px',
@@ -49,7 +69,6 @@ const MoviesListPage = () => {
               <p><strong>IMDb:</strong> {movie.imdb?.rating ?? 'N/A'}</p>
               <p style={{ fontSize: '0.9em', marginTop: '10px' }}>{movie.plot}</p>
 
-              {/* "More details" button */}
               <Link to={`/movies/${movie._id}`}>
                 <button style={{
                   marginTop: '10px',
