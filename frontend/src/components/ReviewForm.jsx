@@ -16,7 +16,7 @@ const ReviewForm = ({ movieId, onReviewAdded }) => {
     try {
       // Send review to backend
       await axios.post(
-        `${process.env.REACT_APP_API_URL}/reviews`,
+        `${process.env.REACT_APP_API_URL}/api/reviews`,
         { movieId, text, rating },
         {
           headers: {
