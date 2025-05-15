@@ -52,3 +52,64 @@ The goal of this phase is to present the completed Movie Rating System project, 
 - MongoDB is used for flexible and scalable data storage.
 - The project is modular, maintainable, and ready for future enhancements.
 - IMDb not like planned.... for future devolopment. 
+
+
+
+### 🛠️ Environment Setup
+- **Frontend**: React (Create React App)
+- **Backend**: Node.js + Express
+- **Database**: MongoDB (replacing PostgreSQL)
+- **Deployment**: Render
+- **Package Manager**: npm
+
+---
+
+### 🔧 Backend Features
+- RESTful API with Express
+- JWT-based authentication
+- Role-based access control (admin, critic, user)
+- CRUD operations for movies:
+  - `POST /api/movies`
+  - `GET /api/movies`
+  - `PUT /api/movies/:id`
+  - `DELETE /api/movies/:id`
+- Password hashing with bcrypt
+- MongoDB interaction via Mongoose
+
+---
+
+### 🎨 Frontend Features
+- Built with React + React Router
+- Axios for API communication
+- Pages:
+  - Login, Register
+  - Add Movie, Edit Movie
+  - Movies List, Movie Details
+- Reusable components: `Navbar`, `MovieCard`, etc.
+- Custom CSS + React-Bootstrap
+- JWT stored in `localStorage` for session persistence
+
+---
+
+### 🗃️ Database Schemas
+- **Movie**: title, director, genre, releaseYear, rating
+- **User**: username, email, password, role
+
+---
+
+### ✅ Implemented Functionalities
+- User authentication and protected routes
+- Movie management (add/edit/delete)
+- Search and filtering (title/genre)
+- Form validation and error handling
+- Confirmation dialogs (SweetAlert2)
+- Responsive and intuitive UI
+
+---
+
+### 🧪 Testing & Code Quality
+- Modular code structure
+- Inline documentation
+- Git version control
+- Unit, integration, and manual testing
+- Error handling with try/catch *(not in second website)
