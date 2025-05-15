@@ -84,12 +84,15 @@ const MovieDetailsPage = () => {
         <p className="movie-plot">{movie.plot}</p>
 
         <div className="movie-buttons">
-          <button
-            onClick={handleToggleFavorite}
-            className={`favorite-button ${isFavorite ? 'favorited' : ''}`}
-          >
-            {isFavorite ? '⭐ Remove from Favorites' : '⭐ Add to Favorites'}
-          </button>
+          {token && (
+            <button
+              onClick={handleToggleFavorite}
+              className={`favorite-button ${isFavorite ? 'favorited' : ''}`}
+            >
+              {isFavorite ? '⭐ Remove from Favorites' : '⭐ Add to Favorites'}
+            </button>
+          )}
+
 
           {role === 'admin' && (
             <button
