@@ -43,7 +43,7 @@ function AddMoviePage() {
     };
 
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/movies`, movieData, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/movies`, movieData, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
