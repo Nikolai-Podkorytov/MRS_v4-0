@@ -9,7 +9,7 @@ const UserList = () => {
 
   const fetchUsers = () => {
     const token = localStorage.getItem('token');
-    axios.get('/api/users', {
+    axios.get('https://mrs-v4-0.onrender.com/api/users', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
@@ -41,7 +41,7 @@ const UserList = () => {
   const handleDelete = (userId) => {
     const token = localStorage.getItem('token');
     if (window.confirm('Are you sure you want to delete this user?')) {
-      axios.delete(`/api/users/${userId}`, {
+      axios.delete(`https://mrs-v4-0.onrender.com/api/users/${userId}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
         .then(() => fetchUsers())
