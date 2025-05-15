@@ -17,27 +17,28 @@ const RegisterPage = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const API_URL = process.env.REACT_APP_API_URL || 'https://mrs-v4-0.onrender.com';
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Submitting data:', formData);
 
     try {
-      await axios.post('/api/auth/register', formData);
+      await axios.post(`${API_URL}/api/auth/register`, formData);
       Swal.fire({
         icon: 'success',
         title: 'Success',
         text: 'Registration successful!'
       });
-
     } catch (error) {
       Swal.fire({
         icon: 'error',
         title: 'Registration Failed',
         text: error.response?.data?.message || 'Registration error'
       });
-
     }
   };
+
 
   return (
     <form onSubmit={handleSubmit} className="register-form">
