@@ -46,7 +46,7 @@ const EditMoviePage = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        `${process.env.REACT_APP_API_URL}/movies/${id}`,
+        `${process.env.REACT_APP_API_URL}/api/movies/${id}`,
         {
           title: formData.title,
           year: parseInt(formData.year),
