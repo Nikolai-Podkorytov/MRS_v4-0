@@ -10,7 +10,7 @@ const MovieManager = () => {
 
   // Fetch all movies from the backend
   const fetchMovies = () => {
-    axios.get('/api/movies')
+    axios.get('https://ms-v4-0.onrender.com/api/movies')
       .then(response => {
         const data = response.data;
         // Проверяем, массив ли это
@@ -39,7 +39,7 @@ const MovieManager = () => {
   const handleDelete = (movieId) => {
     const token = localStorage.getItem('token');
     if (window.confirm('Are you sure you want to delete this movie?')) {
-      axios.delete(`/api/movies/${movieId}`, {
+      axios.delete(`${process.env.REACT_APP_API_URL}/api/movies/${movieId}`,  {
         headers: { Authorization: `Bearer ${token}` }
       })
         .then(() => fetchMovies())
