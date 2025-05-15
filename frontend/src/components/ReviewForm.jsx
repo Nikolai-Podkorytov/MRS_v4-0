@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
 import Swal from 'sweetalert2';
 
 // Review form component
@@ -8,13 +7,21 @@ const ReviewForm = ({ movieId, onReviewAdded }) => {
   const [text, setText] = useState('');
   const [rating, setRating] = useState(5);
 
-  // Handle form submission
+  const token = localStorage.getItem('token');
+
+  // ⛔ Не показывать форму, если пользователь не авторизован
+  if (!token) {
+    return (
+      <p style={{ marginTop: '30px', fontStyle: 'italic', color: '#555' }}>
+        🔐 Войдите, чтобы оставить отзыв.
+      </p>
+    );
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem('token');
 
     try {
-      // Send review to backend
       await axios.post(
         `https://mrs-v4-0.onrender.com/api/reviews`,
         { movieId, text, rating },
@@ -25,24 +32,21 @@ const ReviewForm = ({ movieId, onReviewAdded }) => {
         }
       );
 
-      // Reset form and trigger review list refresh
       setText('');
       setRating(5);
       if (onReviewAdded) onReviewAdded();
     } catch (error) {
-
       Swal.fire({
         icon: 'error',
         title: 'Review Submission Failed',
         text: error.response?.data?.message || error.message
       });
-
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}
-
+    <form
+      onSubmit={handleSubmit}
       className="light-card"
       style={{
         marginTop: '40px',
@@ -51,10 +55,10 @@ const ReviewForm = ({ movieId, onReviewAdded }) => {
         borderRadius: '8px',
         boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
         maxWidth: '600px'
-      }}>
+      }}
+    >
       <h3 style={{ marginBottom: '20px' }}>Leave a Review</h3>
 
-      {/* Rating input */}
       <div style={{ marginBottom: '15px' }}>
         <label style={{ display: 'block', marginBottom: '5px' }}>Rating (1–10):</label>
         <input
@@ -68,7 +72,6 @@ const ReviewForm = ({ movieId, onReviewAdded }) => {
         />
       </div>
 
-      {/* Text input */}
       <div style={{ marginBottom: '15px' }}>
         <label style={{ display: 'block', marginBottom: '5px' }}>Your Review:</label>
         <textarea
@@ -76,11 +79,15 @@ const ReviewForm = ({ movieId, onReviewAdded }) => {
           onChange={(e) => setText(e.target.value)}
           rows="4"
           required
-          style={{ padding: '10px', width: '100%', fontSize: '16px', resize: 'vertical' }}
+          style={{
+            padding: '10px',
+            width: '100%',
+            fontSize: '16px',
+            resize: 'vertical'
+          }}
         />
       </div>
 
-      {/* Submit button */}
       <button
         type="submit"
         style={{
