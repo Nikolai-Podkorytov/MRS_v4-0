@@ -51,3 +51,4 @@ The goal of this phase is to present the completed Movie Rating System project, 
 - Backend is secured with JWT and role-based access control.
 - MongoDB is used for flexible and scalable data storage.
 - The project is modular, maintainable, and ready for future enhancements.
+- IMDb not like planned.... for future devolopment. 
