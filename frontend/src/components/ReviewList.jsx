@@ -13,7 +13,7 @@ const ReviewList = ({ movieId, refreshTrigger }) => {
 
   // Fetch reviews for the movie
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/reviews/${movieId}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/reviews/${movieId}`)
       .then(res => setReviews(res.data))
       .catch(err => console.error('Error loading reviews:', err));
   }, [movieId, refreshTrigger]);
@@ -24,7 +24,7 @@ const ReviewList = ({ movieId, refreshTrigger }) => {
     if (!window.confirm('Delete this review?')) return;
 
     try {
-      await axios.delete(`${process.env.REACT_APP_API_URL}/reviews/${id}`, {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/reviews/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setReviews(reviews.filter(r => r._id !== id));
@@ -51,7 +51,7 @@ const ReviewList = ({ movieId, refreshTrigger }) => {
   const saveEdit = async () => {
     const token = localStorage.getItem('token');
     try {
-      const res = await axios.put(`${process.env.REACT_APP_API_URL}/reviews/${editingId}`, {
+      const res = await axios.put(`${process.env.REACT_APP_API_URL}/api/reviews/${editingId}`, {
         text: editText,
         rating: editRating
       }, {

@@ -51,7 +51,7 @@ const MovieDetailsPage = () => {
       return;
     }
 
-    axios.post(`${process.env.REACT_APP_API_URL}/users/favorites/${id}`, {}, {
+    axios.post(`${process.env.REACT_APP_API_URL}/api/users/favorites/${id}`, {}, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(() => {
