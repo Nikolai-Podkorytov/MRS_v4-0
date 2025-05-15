@@ -9,11 +9,11 @@ const ReviewForm = ({ movieId, onReviewAdded }) => {
 
   const token = localStorage.getItem('token');
 
-  // ⛔ Не показывать форму, если пользователь не авторизован
+  // ⛔ Log in to leave a review.
   if (!token) {
     return (
       <p style={{ marginTop: '30px', fontStyle: 'italic', color: '#555' }}>
-        🔐 Войдите, чтобы оставить отзыв.
+        🔐 Log in to leave a review.
       </p>
     );
   }

@@ -15,7 +15,12 @@ Logbook.md
 | 11.05.2025 | 10    | Project_phase_2     | Testing and fixing mistakes     |
 | 12.05.2025 | 4    | Project_phase_2     | testing react and db     |
 | 12.05.2025 | 3    | Project_phase_2     | testing api problems     |
+| 13.05.2025 | 0  |   Start local        |  65 hours and almost from begining       |
 | 13.05.2025 | 15    | Local web       | beginig from 0 too much  problems     |
 | 14.05.2025 | 10    | Local web       |  too much  problems     |
 | 15.05.2025 | 10    | Polish local       | Starting do final version     |
-| //.//.2025 | 95  | Total hours       |                    |
+| 15.05.2025 | 2    | deploy       |  final version     |
+| 16.05.2025 | 0    | presentetion       | 37 hours second     |
+| 15.05.2025 | 97  | Total hours       |                    |
+
+
