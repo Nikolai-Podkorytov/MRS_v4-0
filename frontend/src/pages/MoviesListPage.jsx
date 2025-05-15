@@ -8,7 +8,7 @@ const MoviesListPage = () => {
 
   // Fetch movies from backend
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/movies`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/movies`)
       .then(response => setMovies(response.data))
       .catch(error => console.error('Error loading movies:', error));
   }, []);
