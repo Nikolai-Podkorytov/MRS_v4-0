@@ -1,24 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../../styles/AdminTable.css'; // Custom styles for admin table
+import '../../styles/AdminTable.css';
 
-// Admin panel component to display and manage users
 const UserList = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch all users from the backend
   const fetchUsers = () => {
     const token = localStorage.getItem('token');
     axios.get('/api/users', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
-        setUsers(response.data);
+        console.log('Fetched users:', response.data); // 👈 Проверка данных
+        const data = response.data;
+
+        // Если сервер возвращает объект с полем users
+        if (Array.isArray(data)) {
+          setUsers(data);
+        } else if (Array.isArray(data.users)) {
+          setUsers(data.users);
+        } else {
+          throw new Error('Invalid data format');
+        }
+
         setLoading(false);
       })
       .catch(error => {
+        console.error('Error fetching users:', error);
         setError(error);
         setLoading(false);
       });
@@ -28,7 +38,6 @@ const UserList = () => {
     fetchUsers();
   }, []);
 
-  // Delete a user by ID
   const handleDelete = (userId) => {
     const token = localStorage.getItem('token');
     if (window.confirm('Are you sure you want to delete this user?')) {
@@ -59,7 +68,7 @@ const UserList = () => {
         </thead>
 
         <tbody>
-          {users.map(user => (
+          {Array.isArray(users) && users.map(user => (
             <tr key={user._id}>
               <td>{user._id}</td>
               <td>{user.username}</td>
