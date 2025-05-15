@@ -12,7 +12,16 @@ const MovieManager = () => {
   const fetchMovies = () => {
     axios.get('/api/movies')
       .then(response => {
-        setMovies(response.data);
+        const data = response.data;
+        // Проверяем, массив ли это
+        if (Array.isArray(data)) {
+          setMovies(data);
+        } else if (Array.isArray(data.movies)) {
+          setMovies(data.movies);
+        } else {
+          console.error('Unexpected response format:', data);
+          setMovies([]); // fallback
+        }
         setLoading(false);
       })
       .catch(error => {
@@ -20,6 +29,7 @@ const MovieManager = () => {
         setLoading(false);
       });
   };
+
 
   useEffect(() => {
     fetchMovies();
